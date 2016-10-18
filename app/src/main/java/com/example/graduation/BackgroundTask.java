@@ -20,7 +20,7 @@ import java.net.URLEncoder;
 /**
  * Created by 정성욱 on 2016-10-18.
  */
-public class BackgroundTask extends AsyncTask<String, Void, String> {
+public class BackgroundTask extends AsyncTask<String,Void,String> {
     AlertDialog alertDialog;
     Context ctx;
 
@@ -76,7 +76,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
             try {
                 URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
@@ -90,10 +90,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 outputStream.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
                 String response = "";
                 String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
+                while ((line = bufferedReader.readLine())!= null) {
                     response+= line;
                 }
                 bufferedReader.close();

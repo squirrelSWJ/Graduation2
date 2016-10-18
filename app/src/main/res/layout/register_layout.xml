@@ -43,7 +43,7 @@
         android:layout_marginLeft="20dp"
         android:text="Password"/>
     <EditText
-        android:id="@+id/new_user_password"
+        android:id="@+id/new_user_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"

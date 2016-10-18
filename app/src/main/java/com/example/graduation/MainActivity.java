@@ -20,7 +20,7 @@ public class MainActivity extends Activity{
         setContentView(R.layout.activity_main);
 
         ET_NAME = (EditText) findViewById(R.id.user_name);
-        ET_PASS = (EditText) findViewById(R.id.user_password);
+        ET_PASS = (EditText) findViewById(R.id.user_pass);
     }
 
     public void userReg(View view) {
@@ -32,7 +32,7 @@ public class MainActivity extends Activity{
         login_pass = ET_PASS.getText().toString();
         String method = "login";
         BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(method, login_name, login_pass);
+        backgroundTask.execute(method,login_name,login_pass);
 
     }
 
