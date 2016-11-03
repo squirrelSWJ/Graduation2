@@ -32,7 +32,7 @@ public class MainActivity extends Activity{
         login_pass = ET_PASS.getText().toString();
         String method = "login";
         BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(method,login_name,login_pass);
+        backgroundTask.execute(method, login_name, login_pass);
 
     }
 

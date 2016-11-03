@@ -27,7 +27,7 @@ public class Register extends Activity{
         user_name = ET_USER_NAME.getText().toString();
         user_pass = ET_USER_PASS.getText().toString();
         String method = "register";
-        BackgroundTask backgroundTask = new BackgroundTask(this);
+        BackgroundTask backgroundTask = new BackgroundTask(Register.this.getApplicationContext());
         backgroundTask.execute(method, name, user_name, user_pass);
         finish();
 

@@ -37,8 +37,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String reg_url = "http://127.0.0.1/Login/register.php";
-        String login_url = "http://127.0.0.1/Login/login.php";
+        String reg_url = "http://squirrel.maru.net/register.php";
+        String login_url = "http://squirrel.maru.net/login.php";
         String method = params[0];
         if (method.equals("register")) {
             String name = params[1];
@@ -47,33 +47,33 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
             try {
                 URL url = new URL(reg_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
 
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS, "UTF-8"));
-                String data = URLEncoder.encode("user","UTF-8") +"="+URLEncoder.encode(name,"UTF-8")+"&"+
-                        URLEncoder.encode("user_name","UTF-8") +"="+URLEncoder.encode(user_name,"UTF-8")+"&"+
-                        URLEncoder.encode("user_pass","UTF-8") +"="+URLEncoder.encode(user_pass,"UTF-8");
+                String data = URLEncoder.encode("user", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&" +
+                        URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(user_name, "UTF-8") + "&" +
+                        URLEncoder.encode("user_pass", "UTF-8") + "=" + URLEncoder.encode(user_pass, "UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 OS.close();
                 InputStream IS = httpURLConnection.getInputStream();
                 IS.close();
-                return "Registration Success...";
 
+                return "회원 등록 성공!!!";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if (method.equals("login")) {
+
+
+        } else if (method.equals("login")) {
             String login_name = params[1];
             String login_pass = params[2];
-
             try {
                 URL url = new URL(login_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -92,20 +92,26 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
                 String response = "";
-                String line = "";
-                while ((line = bufferedReader.readLine())!= null) {
+                String line= "";
+                while ((line = bufferedReader.readLine()) !=null){
                     response+= line;
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
                 return response;
+
+
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
         }
+
         return null;
     }
 
@@ -116,11 +122,13 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if(result.equals("Registration Success...")) {
+        if (result.equals("회원 등록 성공!!!")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
-        }else{
+        } else {
             alertDialog.setMessage(result);
             alertDialog.show();
+
         }
+
     }
 }
